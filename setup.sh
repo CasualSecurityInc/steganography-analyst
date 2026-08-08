@@ -48,8 +48,18 @@ if [ ! -d "$VENV_DIR" ]; then
     uv venv "$VENV_DIR"
 fi
 source "$VENV_DIR/bin/activate"
-uv pip install stegoveritas binwalk Pillow numpy 2>&1 | tail -1
+uv pip install stegoveritas binwalk Pillow numpy 2>&1 | grep -E "^( \+|All)" || true
 deactivate
+
+# Check libmagic (required by stegoveritas at runtime)
+if ! "$VENV_DIR/bin/python" -c "import magic" 2>/dev/null; then
+    echo "  NOTE: stegoveritas needs libmagic. Install with:"
+    if [ "$PLATFORM" = "darwin" ]; then
+        echo "    brew install libmagic"
+    else
+        echo "    apt install libmagic1"
+    fi
+fi
 
 # ── jsteg (pre-built Go binary) ─────────────────────────────────────
 echo "[3/6] Downloading jsteg..."
@@ -107,17 +117,22 @@ echo "[6/6] Installing zsteg..."
 if command -v zsteg &>/dev/null; then
     echo "  zsteg found: $(command -v zsteg)"
 elif command -v gem &>/dev/null; then
-    gem install --user-install zsteg 2>&1 | tail -1
+    gem install --user-install zsteg 2>&1 | tail -3
     echo "  zsteg installed (user-local gem)"
 else
     echo "  WARNING: Ruby/gem not found. Install Ruby first, then: gem install --user-install zsteg"
 fi
 
 # ── Generate env.sh ─────────────────────────────────────────────────
+GEM_BIN=""
+if command -v gem &>/dev/null; then
+    GEM_USER_DIR="$(gem environment 2>/dev/null | grep 'USER INSTALLATION DIRECTORY:' | sed 's/.*: //')"
+    [ -d "$GEM_USER_DIR/bin" ] && GEM_BIN="$GEM_USER_DIR/bin"
+fi
 cat > "$ENV_FILE" <<ENVEOF
 # Source this file to add steganography-analyst tools to PATH:
 #   source steganography-analyst/scripts/env.sh
-export PATH="$BIN_DIR:$VENV_DIR/bin:\$PATH"
+export PATH="$BIN_DIR:$VENV_DIR/bin${GEM_BIN:+:$GEM_BIN}:\$PATH"
 ENVEOF
 
 # ── System tool check ───────────────────────────────────────────────
