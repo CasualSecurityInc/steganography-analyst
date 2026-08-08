@@ -37,13 +37,17 @@ python3 scripts/wavsteg.py -i audio.wav -o out.txt -n 1
 
 ## Password Recovery for Steghide
 
-```bash
-# Fast: stegseek (Linux, or via Docker on macOS)
-stegseek image.jpg wordlist.txt
-docker run --rm -it -v "$(pwd):/steg" rickdejager/stegseek stegofile.jpg wordlist.txt
+Before brute-forcing, try `stegseek --seed image.jpg` to detect steghide data without a wordlist.
 
+If a wordlist is needed, **ask the operator for the path**. Don't assume a default location — common ones include `/usr/share/wordlists/rockyou.txt` (Kali), `~/wordlists/`, or the operator may have a custom collection.
+
+```bash
 # Seed crack — detect steghide data without wordlist
 stegseek --seed image.jpg
+
+# Brute-force with wordlist (ask operator for path first)
+stegseek image.jpg /path/to/wordlist.txt
+docker run --rm -it -v "$(pwd):/steg" rickdejager/stegseek stegofile.jpg /path/to/wordlist.txt
 
 # Manual: try common passwords
 for p in password flag secret admin test ""; do

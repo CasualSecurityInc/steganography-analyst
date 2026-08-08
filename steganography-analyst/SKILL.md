@@ -41,7 +41,7 @@ What file type are you analyzing?
 2. `steghide extract -sf image.jpg` — DCT coefficient extraction
 3. `jsteg reveal image.jpg` — JPEG LSB
 4. `binwalk -e image.jpg` — embedded data
-5. If password-protected: `stegseek image.jpg wordlist.txt`
+5. If password-protected: `stegseek --seed image.jpg` first, then ask operator for wordlist path
 
 ### Image (GIF)
 
@@ -74,9 +74,10 @@ xxd suspicious_file | head -20          # magic bytes
 
 ### Password Needed?
 
+- `stegseek --seed image.jpg` — detect steghide data without a wordlist first
 - `stegseek image.jpg wordlist.txt` — fast steghide cracker (Linux; on macOS: `docker run --rm -it -v "$(pwd):/steg" rickdejager/stegseek`)
-- `stegseek --seed image.jpg` — detect steghide data without wordlist
-- Try common passwords: `password`, `flag`, `secret`, the filename, challenge name
+- **Ask the operator for wordlist path** before brute-forcing. Common locations: `/usr/share/wordlists/rockyou.txt` (Kali), `~/wordlists/`, or the operator may have a custom one. Don't assume a default path exists.
+- Try common passwords first: `password`, `flag`, `secret`, the filename, challenge name
 
 ## Bundled Scripts
 

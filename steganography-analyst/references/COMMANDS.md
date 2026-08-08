@@ -72,8 +72,8 @@ steghide embed -cf cover.jpg -ef secret.txt -p "pass"  # embed (testing)
 ### stegseek
 
 ```bash
-stegseek image.jpg wordlist.txt           # crack passphrase
-stegseek --seed image.jpg                 # seed crack (no wordlist)
+stegseek --seed image.jpg                 # detect steghide data (no wordlist needed)
+stegseek image.jpg /path/to/wordlist.txt  # crack passphrase (ask operator for wordlist path)
 ```
 
 ### jsteg
