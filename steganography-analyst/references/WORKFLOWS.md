@@ -38,8 +38,12 @@ python3 scripts/wavsteg.py -i audio.wav -o out.txt -n 1
 ## Password Recovery for Steghide
 
 ```bash
-# Fast: stegseek
+# Fast: stegseek (Linux, or via Docker on macOS)
 stegseek image.jpg wordlist.txt
+docker run --rm -it -v "$(pwd):/steg" rickdejager/stegseek stegofile.jpg wordlist.txt
+
+# Seed crack — detect steghide data without wordlist
+stegseek --seed image.jpg
 
 # Manual: try common passwords
 for p in password flag secret admin test ""; do

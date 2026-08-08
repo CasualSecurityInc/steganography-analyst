@@ -58,7 +58,7 @@ steganography-analyst/
 | [binwalk](https://github.com/ReFirmLabs/binwalk) | `uv pip install` |
 | [zsteg](https://github.com/zed-0xff/zsteg) | `gem install --user-install` |
 | [jsteg](https://github.com/lukechampine/jsteg) | Pre-built binary |
-| [stegseek](https://github.com/RickdeJager/stegseek) | Binary (Linux) / brew (macOS) |
+| [stegseek](https://github.com/RickdeJager/stegseek) | Binary (Linux) / Docker (macOS) |
 | [StegSolve](https://github.com/Giotino/stegsolve) | JAR download (optional, needs Java) |
 
 ## Design principles

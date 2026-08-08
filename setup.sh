@@ -108,8 +108,9 @@ elif [ "$PLATFORM" = "linux" ]; then
     fi
     rm -rf "$DEB_TMP" "$DEB_EXTRACT"
 elif [ "$PLATFORM" = "darwin" ]; then
-    echo "  stegseek not available as binary for macOS."
-    echo "  Install via: brew install stegseek"
+    echo "  stegseek not available natively for macOS."
+    echo "  Use Docker: docker run --rm -it -v \"\$(pwd):/steg\" rickdejager/stegseek"
+    echo "  Or build from source: https://github.com/RickdeJager/stegseek/blob/master/BUILD.md"
 fi
 
 # ── zsteg (Ruby gem) ───────────────────────────────────────────────

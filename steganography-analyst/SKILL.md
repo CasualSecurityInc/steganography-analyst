@@ -74,7 +74,8 @@ xxd suspicious_file | head -20          # magic bytes
 
 ### Password Needed?
 
-- `stegseek image.jpg wordlist.txt` — fast steghide cracker
+- `stegseek image.jpg wordlist.txt` — fast steghide cracker (Linux; on macOS: `docker run --rm -it -v "$(pwd):/steg" rickdejager/stegseek`)
+- `stegseek --seed image.jpg` — detect steghide data without wordlist
 - Try common passwords: `password`, `flag`, `secret`, the filename, challenge name
 
 ## Bundled Scripts
@@ -100,7 +101,7 @@ Installed project-locally by `setup.sh`. See [COMMANDS.md](references/COMMANDS.m
 | stegoveritas | Automated multi-tool analysis pass |
 | binwalk | Embedded file extraction + entropy analysis |
 | steghide | JPEG/WAV/BMP DCT steganography |
-| stegseek | Fast steghide passphrase cracker |
+| stegseek | Fast steghide passphrase cracker (Linux binary; macOS via Docker) |
 | jsteg | JPEG LSB extraction |
 | exiftool | Metadata extraction and manipulation |
 | pngcheck | PNG structure validation |

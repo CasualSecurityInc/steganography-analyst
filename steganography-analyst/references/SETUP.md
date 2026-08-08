@@ -49,8 +49,12 @@ Download from https://github.com/Giotino/stegsolve/releases/tag/v1.4 — place i
 
 ### stegseek
 
-- **macOS**: `brew install stegseek`
 - **Linux**: Download `.deb` from https://github.com/RickdeJager/stegseek/releases and extract the binary
+- **macOS**: No native binary. Use Docker:
+  ```bash
+  docker run --rm -it -v "$(pwd):/steg" rickdejager/stegseek stegofile.jpg wordlist.txt
+  ```
+  Or build from source (requires cmake): https://github.com/RickdeJager/stegseek/blob/master/BUILD.md
 
 ### System tools (macOS)
 
