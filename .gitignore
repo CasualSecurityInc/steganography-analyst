@@ -1,7 +1,7 @@
 .venv/
-steganography-analyst/scripts/bin/
-steganography-analyst/scripts/lib/
-steganography-analyst/scripts/env.sh
+skills/steganography-analyst/scripts/bin/
+skills/steganography-analyst/scripts/lib/
+skills/steganography-analyst/scripts/env.sh
 results/
 __pycache__/
 *.pyc

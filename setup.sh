@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
-SKILL_DIR="$SCRIPT_DIR/steganography-analyst"
+SKILL_DIR="$SCRIPT_DIR/skills/steganography-analyst"
 BIN_DIR="$SKILL_DIR/scripts/bin"
 LIB_DIR="$SKILL_DIR/scripts/lib"
 VENV_DIR="$SCRIPT_DIR/.venv"
@@ -132,7 +132,7 @@ if command -v gem &>/dev/null; then
 fi
 cat > "$ENV_FILE" <<ENVEOF
 # Source this file to add steganography-analyst tools to PATH:
-#   source steganography-analyst/scripts/env.sh
+#   source skills/steganography-analyst/scripts/env.sh
 export PATH="$BIN_DIR:$VENV_DIR/bin${GEM_BIN:+:$GEM_BIN}:\$PATH"
 ENVEOF
 
@@ -163,5 +163,5 @@ fi
 # ── Done ────────────────────────────────────────────────────────────
 echo ""
 echo "=== Setup complete ==="
-echo "Run: source steganography-analyst/scripts/env.sh"
-echo "Then see steganography-analyst/SKILL.md for the analysis playbook."
+echo "Run: source skills/steganography-analyst/scripts/env.sh"
+echo "Then see skills/steganography-analyst/SKILL.md for the analysis playbook."
