@@ -1,0 +1,11 @@
+[project]
+name = "steganography-analyst"
+version = "0.1.0"
+description = "Steganography detection and extraction toolkit"
+requires-python = ">=3.10"
+dependencies = [
+    "stegoveritas",
+    "binwalk",
+    "Pillow",
+    "numpy",
+]
